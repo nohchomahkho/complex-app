@@ -101,7 +101,7 @@ User.findByUsername = function(username){
       if(userDoc){
         userDoc = new User(userDoc, true)
         userDoc = {
-          _id: userDoc.data.id,
+          _id: userDoc.data._id,
           username: userDoc.data.username,
           avatar: userDoc.avatar
         }
