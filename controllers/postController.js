@@ -7,7 +7,7 @@ exports.viewCreateScreen = function(req, res){
 exports.create = function(req, res){
   let post = new Post(req.body, req.session.user._id)
   post.create().then(function(){
-    res.send("New post created.")
+    res.redirect('/posts')
   }).catch(function(errors){
     res.send(errors)
   })
@@ -19,5 +19,15 @@ exports.viewSingle = async function(req, res){
      res.render('single-post-screen', {post: post})
   } catch{
      res.render("404")
+  }
+}
+
+exports.viewAll = async function(req, res) {
+  try {
+    let posts = await Post.findAll()
+    res.render('all-posts', {posts: posts})
+  }
+  catch {
+    res.render("404")
   }
 }

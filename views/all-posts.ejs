@@ -1,0 +1,15 @@
+<%- include('includes/header') %>
+  
+  <div class="container py-md-5 container--narrow">
+      <% posts.forEach(post => { %>
+        <div class="d-flex justify-content-between">
+          <h2><a href="/post/<%= post._id %>"><%= post.title %></a></h2>
+          <h3><%= post._id %></h3>
+          <a href="#"><img class="avatar-tiny" src="<%= post.author.avatar %>"></a>
+          <a href="#"><strong><%= post.author.username %></strong></a>
+          <span class="text-muted"></span>
+        </div>
+      <% }) %>
+  </div>
+  
+  <%- include('includes/footer') %>

@@ -74,7 +74,7 @@ Post.reusablePostQuery = function(uniqueOperations) {
 
 Post.findSingleById = function(id) {
   return new Promise(async function(resolve, reject) {
-    if (typeof(id) != "string" || !ObjectID.isValid(id)) {
+    if (typeof(id) != "string" || !ObjectId.isValid(id)) {
       reject()
       return
     }
@@ -95,6 +95,12 @@ Post.findSingleById = function(id) {
 Post.findByAuthorId = function(authorId) {
   return Post.reusablePostQuery([
     {$match: {author: authorId}},
+    {$sort: {createdDate: -1}}
+  ])
+}
+
+Post.findAll = function() {
+  return Post.reusablePostQuery([
     {$sort: {createdDate: -1}}
   ])
 }
